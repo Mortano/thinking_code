@@ -261,7 +261,7 @@ namespace Lazy
                while ( _cur != _end ) ++_cur; //So that comparison with end() works
             }
          }
-         return *this;
+         return *this; //Added some fucking comment   asdasdasd
       }
 
       bool operator==( const LazyLimit& other ) const

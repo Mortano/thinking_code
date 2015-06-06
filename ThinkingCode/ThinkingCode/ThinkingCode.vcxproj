@@ -142,10 +142,13 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Concepts.h" />
     <ClInclude Include="Lazy.h" />
     <ClInclude Include="Propositional.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
+    <ClInclude Include="TupleHelper.h" />
+    <ClInclude Include="ZipIterator.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

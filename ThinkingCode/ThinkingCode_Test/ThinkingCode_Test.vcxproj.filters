@@ -26,7 +26,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LazyTest.cpp">
+    <ClCompile Include="TupleHelperTest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZipIteratorTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -257,7 +257,7 @@ Validity CheckValidity()
    return Validity::Unknown;
 }
 
-template<typename Exp, typename Truth1, typename Truth2, typename = typename std::enable_if<!std::is_same<Truth1, Truth2>::value>::type>
+template<typename Exp, typename Truth1, typename Truth2>
 Validity CheckValidity()
 {
    bool r1 = BuildExpr<Exp, Truth1, Truth2>::Build( true, true )();
@@ -274,6 +274,18 @@ Validity CheckValidity()
    return r1 ? Validity::Always : Validity::Never;
 }
 
+template<typename Exp, typename T1, typename T2, typename T3>
+Validity CheckValidity()
+{
+   bool first = BuildExpr<Exp, T1, T2, T3>::Build( false, false, false )();
+   for ( int i = 1; i < 8; i++ )
+   {
+      bool next = BuildExpr<Exp, T1, T2, T3>::Build( i / 2 != 0, i % 2 != 0, i % 4 != 0 )();
+      if ( next != first ) return Validity::Unknown;
+   }
+   return first ? Validity::Always : Validity::Never;
+}
+
 void Test( )
 {
    //This is the raw version
@@ -286,6 +298,11 @@ void Test( )
    auto v4 = CheckValidity<Or<A, Or<B, Implies<A, B>>>, A, B>();
    auto v5 = CheckValidity<Equals<And<A, B>, Not<Or<Not<A>, Not<B>>>>, A, B>();
 
+   auto v6 = CheckValidity<And<Implies<A, B>, And<Implies<B, C>, Implies<C, A>>>, A, B, C>();
+   auto v7 = CheckValidity<And<Implies<A, B>, Not<Or<Not<A>, B>>>, A, B>();
+   auto v8 = CheckValidity<Equals<And<Implies<A, B>, Implies<B, C>>, Implies<A, C>>, A, B, C>();
+
+   int bla = 5;
 }
 
 #endif

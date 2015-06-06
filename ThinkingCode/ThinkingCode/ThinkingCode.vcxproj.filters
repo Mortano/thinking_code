@@ -30,6 +30,15 @@
     <ClInclude Include="Lazy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ZipIterator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TupleHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Concepts.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

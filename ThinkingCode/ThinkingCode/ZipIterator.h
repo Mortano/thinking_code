@@ -11,8 +11,8 @@ namespace Zip
    struct _GetIterator
    {
       using iterator = typename std::conditional< std::is_const<T>::value, 
-                                                  typename T::const_iterator, 
-                                                  typename T::iterator >::type;
+                                                  typename std::remove_reference<T>::type::const_iterator, 
+                                                  typename std::remove_reference<T>::type::iterator >::type;
    };
 
    //! \brief Pass-through function that can be used to expand a function call on all arguments of a parameter pack
@@ -149,13 +149,12 @@ namespace Zip
    //! \tparam Args Types of collections
    //! \returns A ZipIterator over all the collections
    template<typename... Args>
-   ZipCollection<typename _GetIterator<Args>::iterator...> Zip( Args&... args )
+   ZipCollection<typename _GetIterator<Args>::iterator...> Zip( Args&&... args )
    {
       using IterCollection_t = _IterCollection<typename _GetIterator<Args>::iterator...>;
       return ZipCollection<typename _GetIterator<Args>::iterator...>( IterCollection_t( std::begin( args )... ),
                                                                       IterCollection_t( std::end(args)... ) );
    }
-
 
 #pragma endregion
 

@@ -10,7 +10,7 @@ namespace
    {
       static void Call( std::tuple<_TupleArgs...>& tuple, _Action&& action )
       {
-         action.operator()<std::tuple<_TupleArgs...>, N>( tuple );
+         action. template operator()<std::tuple<_TupleArgs...>, N>( tuple );
          _ForEachInTupleHelper<_Action, N - 1, _TupleArgs...>::Call( tuple, std::forward<_Action>( action ) ); // Recursive call for the next tuple element
       }
    };
@@ -20,7 +20,7 @@ namespace
    {
       static void Call( std::tuple<_TupleArgs...>& tuple, _Action&& action )
       {
-         action.operator()<std::tuple<_TupleArgs...>, 0>( tuple );
+         action. template operator()<std::tuple<_TupleArgs...>, 0>( tuple );
       }
    };
 
